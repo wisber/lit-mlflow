@@ -48,7 +48,7 @@ jobs:
 
       - name: Add poetry to path
         run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
-
+      - run: df -h
       - name: Set up cache
         uses: actions/cache@v5
         id: cached-poetry-dependencies
@@ -135,3 +135,5 @@ jobs:
           report_individual_runs: true
           files: junit/test-results-${{ runner.os }}-${{ matrix.python-version }}.xml
         if: ${{ always() && github.event_name == 'pull_request' && github.event.workflow_run.conclusion != 'skipped' }}
+
+      - run: df -h
